@@ -95,8 +95,11 @@ join Vehicles as v on b.vehicle_id = v.vehicle_id;
 
 select v.vehicle_id,v.name,v.type,v.model,v.registration_number,v.rental_price,v.status
 from Vehicles as v
-left join Bookings as b on v.vehicle_id = b.vehicle_id
-where b.vehicle_id is null;
+where not exists (
+    SELECT 1
+    FROM Bookings b
+    WHERE b.vehicle_id = v.vehicle_id
+);
 
 
 

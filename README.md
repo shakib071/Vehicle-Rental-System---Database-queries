@@ -93,28 +93,33 @@ Useful for admins or customer service to see all booking details in one place.
 
 ```sql
     SELECT v.vehicle_id,
-        v.name,
-        v.type,
-        v.model,
-        v.registration_number,
-        v.rental_price,
-        v.status
+       v.name,
+       v.type,
+       v.model,
+       v.registration_number,
+       v.rental_price,
+       v.status
     FROM Vehicles v
-    LEFT JOIN Bookings b ON v.vehicle_id = b.vehicle_id
-    WHERE b.vehicle_id IS NULL;
+    WHERE NOT EXISTS (
+        SELECT 1
+        FROM Bookings b
+        WHERE b.vehicle_id = v.vehicle_id
+    );
 ```
 
 #### Explanation:
 
-LEFT JOIN keeps all vehicles, even those without a booking.
-WHERE b.vehicle_id IS NULL filters out vehicles that do have bookings, leaving only never-booked vehicles.
+The outer query selects all vehicles from the Vehicles table.
+The subquery checks if a booking exists for that vehicle (b.vehicle_id = v.vehicle_id).
+NOT EXISTS ensures only vehicles with no matching booking are returned.
 
-Output example:
-| vehicle_id | name | type | model | registration_number | rental_price | status |
-|------------|---------|------|-------|--------------------|--------------|-----------|
-| 3 | Honda Civic | car | 2022 | XYZ-1234 | 50.00 | available |
+Example Output:
 
-Useful for inventory management and identifying vehicles that are underused or not used.
+vehicle_id	name	type	model	registration_number	rental_price	status
+3	Honda Civic	car	2022	XYZ-1234	50.00	available
+5	Suzuki Bike	bike	2021	BIKE-5678	20.00	available
+
+Helps the rental business identify unused inventory.
 
 
 ###  Query 3: Available Cars

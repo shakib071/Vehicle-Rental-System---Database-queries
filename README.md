@@ -64,7 +64,7 @@ Manages vehicle rental bookings.
 
 ---
 
-## 📄 queries.sql (Explanation of Queries)
+## 📄 Explanation of Queries
 
 ### 🔹 Query 1: Booking Details with User and Vehicle
 #### Lists all bookings along with the customer who made the booking and the vehicle that was booked.

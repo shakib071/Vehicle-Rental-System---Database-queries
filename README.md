@@ -4,17 +4,11 @@
 The **Vehicle Rental System** is a relational database project built using **PostgreSQL**.  
 It manages users, vehicles, and bookings for a rental service. The design uses **ENUM types**, **foreign keys**, and **constraints** to ensure data integrity and scalability.
 
-This project is suitable for:
-- Database design practice
-- Backend projects (Django / Node.js)
-- Academic coursework
-- Real-world rental systems
 
 ---
 
 ## 🛠️ Technologies Used
 - PostgreSQL
-- SQL (DDL & DML)
 
 ---
 

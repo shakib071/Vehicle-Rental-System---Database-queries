@@ -110,7 +110,17 @@ Useful for admins or customer service to see all booking details in one place.
     WHERE b.vehicle_id IS NULL;
 ```
 
-#### Purpose: Useful for identifying unused inventory.
+#### Explanation:
+
+LEFT JOIN keeps all vehicles, even those without a booking.
+WHERE b.vehicle_id IS NULL filters out vehicles that do have bookings, leaving only never-booked vehicles.
+
+Output example:
+| vehicle_id | name | type | model | registration_number | rental_price | status |
+|------------|---------|------|-------|--------------------|--------------|-----------|
+| 3 | Honda Civic | car | 2022 | XYZ-1234 | 50.00 | available |
+
+Useful for inventory management and identifying vehicles that are underused or not used.
 
 
 ### 🔹 Query 3: Available Cars
@@ -124,7 +134,16 @@ Useful for admins or customer service to see all booking details in one place.
     AND status = 'available';
 ```
 
-#### Purpose: Helps customers or admins find ready-to-rent cars.
+#### Explanation:
+
+Filters Vehicles table by type = 'car' and status = 'available'.
+
+Output example:
+| vehicle_id | name | type | model | registration_number | rental_price | status |
+|------------|-------------|------|-------|--------------------|--------------|-----------|
+| 2 | Toyota Camry | car | 2021 | ABC-5678 | 60.00 | available |
+
+Helps admins or customers quickly identify cars ready for rental.
 
 
 ### 🔹 Query 4: Vehicles with More Than 2 Bookings
@@ -139,5 +158,16 @@ Useful for admins or customer service to see all booking details in one place.
     HAVING COUNT(*) > 2;
 ```
 
-#### Purpose:
-    Analyzes booking frequency for business insights.
+#### Explanation:
+
+JOIN Vehicles links bookings to the vehicle names.
+GROUP BY aggregates bookings by vehicle.
+HAVING COUNT(*) > 2 filters only vehicles with more than 2 bookings.
+
+Output example:
+| vehicle_name | total_bookings |
+|--------------|----------------|
+| Toyota Camry | 5 |
+| Honda Civic | 3 |
+
+Use case: Helps the business analyze which vehicles are most popular and may need maintenance, replacement, or price adjustment.

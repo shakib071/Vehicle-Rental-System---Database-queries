@@ -142,7 +142,7 @@ Output example:
 
 
 ###  Query 4: Vehicles with More Than 2 Bookings
-####Identifies high-demand vehicles.
+#### Identifies high-demand vehicles.
 
 ```sql
     SELECT v.name AS vehicle_name,

@@ -67,7 +67,7 @@ Manages vehicle rental bookings.
 ## 📄 queries.sql (Explanation of Queries)
 
 ### 🔹 Query 1: Booking Details with User and Vehicle
-#### Displays booking information along with customer and vehicle names.
+#### Lists all bookings along with the customer who made the booking and the vehicle that was booked.
 
 ```sql
     SELECT b.booking_id,
@@ -81,7 +81,17 @@ Manages vehicle rental bookings.
     JOIN Vehicles v ON v.vehicle_id = b.vehicle_id;
 ```
 
-#### Purpose: To view all bookings with complete contextual details.
+#### Explanation:
+
+JOIN Users connects each booking to the user who made it.
+JOIN Vehicles connects each booking to the vehicle.
+
+Output example:
+| booking_id | customer_name | vehicle_name | start_date | end_date | status |
+|------------|---------------|--------------|------------|----------|-----------|
+| 1 | John Doe | Toyota Camry | 2025-12-01 | 2025-12-05 | confirmed |
+
+Useful for admins or customer service to see all booking details in one place.
 
 
 ### 🔹 Query 2: Vehicles Never Booked

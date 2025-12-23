@@ -69,7 +69,7 @@ Manages vehicle rental bookings.
 ### 🔹 Query 1: Booking Details with User and Vehicle
 #### Displays booking information along with customer and vehicle names.
 
-```json
+```sql
     SELECT b.booking_id,
         u.name AS customer_name,
         v.name AS vehicle_name,
@@ -87,7 +87,7 @@ Manages vehicle rental bookings.
 ### 🔹 Query 2: Vehicles Never Booked
 #### Finds vehicles that have never been rented.
 
-```json
+```sql
     SELECT v.vehicle_id,
         v.name,
         v.type,
@@ -107,7 +107,7 @@ Manages vehicle rental bookings.
 
 #### Retrieves all cars that are currently available for rent.
 
-```json
+```sql
     SELECT *
     FROM Vehicles
     WHERE type = 'car'
@@ -120,7 +120,7 @@ Manages vehicle rental bookings.
 ### 🔹 Query 4: Vehicles with More Than 2 Bookings
 ####Identifies high-demand vehicles.
 
-```json 
+```sql
     SELECT v.name AS vehicle_name,
     COUNT(*) AS total_bookings
     FROM Bookings b

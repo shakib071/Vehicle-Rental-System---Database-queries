@@ -50,38 +50,6 @@ create table Bookings(
 
 
 
--- Sample Data Input 
-
-
--- users table data input 
-
-insert into Users (name, email, password, phone, role) values
-('Alice', 'alice@example.com', 'abc123xyz', '1234567890', 'Customer'),
-('Bob', 'bob@example.com', 'def456uvw', '0987654321', 'Admin'),
-('Charlie', 'charlie@example.com', 'ghi789rst', '1122334455', 'Customer');
-
-
---vehicles table data input 
-
-
-insert into Vehicles (name, type, model, registration_number, rental_price, status) values
-('Toyota Corolla', 'car', '2022', 'ABC-123', 50.00, 'available'),
-('Honda Civic', 'car', '2021', 'DEF-456', 60.00, 'rented'),
-('Yamaha R15', 'bike', '2023', 'GHI-789', 30.00, 'available'),
-('Ford F-150', 'truck', '2020', 'JKL-012', 100.00, 'maintenance');
-
-
--- Bookings table data input 
-
-insert into Bookings (user_id, vehicle_id, start_date, end_date, status, total_cost) values
-(1, 2, '2023-10-01', '2023-10-05', 'completed', 240.00),
-(1, 2, '2023-11-01', '2023-11-03', 'completed', 120.00),
-(3, 2, '2023-12-01', '2023-12-02', 'confirmed', 60.00),
-(1, 1, '2023-12-10', '2023-12-12', 'pending', 100.00);
-
-
-
-
 -- Query 1 
 
 select b.booking_id,u.name as customer_name , v.name as vehicle_name, b.start_date,b.end_date,b.status

@@ -53,9 +53,6 @@ Manages vehicle rental bookings.
 - `status` (`pending`, `confirmed`, `completed`, `cancelled`)
 - `total_cost`
 
-**Note:**  
-`ON DELETE CASCADE` ensures bookings are deleted automatically if a user or vehicle is removed.
-
 ---
 
 ##  Explanation of Queries
@@ -78,14 +75,13 @@ Manages vehicle rental bookings.
 #### Explanation:
 
 JOIN Users connects each booking to the user who made it.
-JOIN Vehicles connects each booking to the vehicle.
+JOIN Vehicles connects each booking to the vehicle and select necessary column.
 
 Output example:
 | booking_id | customer_name | vehicle_name | start_date | end_date | status |
 |------------|---------------|--------------|------------|----------|-----------|
 | 1 | John Doe | Toyota Camry | 2025-12-01 | 2025-12-05 | confirmed |
 
-Useful for admins or customer service to see all booking details in one place.
 
 
 ###  Query 2: Vehicles Never Booked
@@ -121,7 +117,6 @@ Example Output:
 | 5          | Suzuki Bike | bike | 2021  | BIKE-5678          | 20.00        | available |
 
 
-Helps the rental business identify unused inventory.
 
 
 ###  Query 3: Available Cars
@@ -144,7 +139,6 @@ Output example:
 |------------|-------------|------|-------|--------------------|--------------|-----------|
 | 2 | Toyota Camry | car | 2021 | ABC-5678 | 60.00 | available |
 
-Helps admins or customers quickly identify cars ready for rental.
 
 
 ###  Query 4: Vehicles with More Than 2 Bookings
@@ -163,7 +157,7 @@ Helps admins or customers quickly identify cars ready for rental.
 
 JOIN Vehicles links bookings to the vehicle names.
 GROUP BY aggregates bookings by vehicle.
-HAVING COUNT(*) > 2 filters only vehicles with more than 2 bookings.
+having count(*) > 2 filters only vehicles with more than 2 bookings.
 
 Output example:
 | vehicle_name | total_bookings |
@@ -171,4 +165,3 @@ Output example:
 | Toyota Camry | 5 |
 | Honda Civic | 3 |
 
-Use case: Helps the business analyze which vehicles are most popular and may need maintenance, replacement, or price adjustment.

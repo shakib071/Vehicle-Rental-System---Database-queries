@@ -1,20 +1,20 @@
 # Vehicle Rental System (PostgreSQL)
 
-## 📌 Project Overview
+##  Project Overview
 The **Vehicle Rental System** is a relational database project built using **PostgreSQL**.  
 It manages users, vehicles, and bookings for a rental service. The design uses **ENUM types**, **foreign keys**, and **constraints** to ensure data integrity and scalability.
 
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 - PostgreSQL
 
 ---
 
-## 📂 Database Structure
+##  Database Structure
 
-### 1️⃣ Users Table
+### Users Table
 Stores system users such as **Admins** and **Customers**.
 
 **Fields:**
@@ -27,7 +27,7 @@ Stores system users such as **Admins** and **Customers**.
 
 ---
 
-### 2️⃣ Vehicles Table
+###  Vehicles Table
 Stores information about rental vehicles.
 
 **Fields:**
@@ -41,7 +41,7 @@ Stores information about rental vehicles.
 
 ---
 
-### 3️⃣ Bookings Table
+### Bookings Table
 Manages vehicle rental bookings.
 
 **Fields:**
@@ -58,9 +58,9 @@ Manages vehicle rental bookings.
 
 ---
 
-## 📄 Explanation of Queries
+##  Explanation of Queries
 
-### 🔹 Query 1: Booking Details with User and Vehicle
+###  Query 1: Booking Details with User and Vehicle
 #### Lists all bookings along with the customer who made the booking and the vehicle that was booked.
 
 ```sql
@@ -88,7 +88,7 @@ Output example:
 Useful for admins or customer service to see all booking details in one place.
 
 
-### 🔹 Query 2: Vehicles Never Booked
+###  Query 2: Vehicles Never Booked
 #### Finds vehicles that have never been rented.
 
 ```sql
@@ -117,7 +117,7 @@ Output example:
 Useful for inventory management and identifying vehicles that are underused or not used.
 
 
-### 🔹 Query 3: Available Cars
+###  Query 3: Available Cars
 
 #### Retrieves all cars that are currently available for rent.
 
@@ -140,7 +140,7 @@ Output example:
 Helps admins or customers quickly identify cars ready for rental.
 
 
-### 🔹 Query 4: Vehicles with More Than 2 Bookings
+###  Query 4: Vehicles with More Than 2 Bookings
 ####Identifies high-demand vehicles.
 
 ```sql

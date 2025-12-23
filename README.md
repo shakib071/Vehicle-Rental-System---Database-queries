@@ -67,67 +67,63 @@ Manages vehicle rental bookings.
 ## 📄 queries.sql (Explanation of Queries)
 
 ### 🔹 Query 1: Booking Details with User and Vehicle
-    Displays booking information along with customer and vehicle names.
+#### Displays booking information along with customer and vehicle names.
 
-        ```sql
-            SELECT b.booking_id,
-                u.name AS customer_name,
-                v.name AS vehicle_name,
-                b.start_date,
-                b.end_date,
-                b.status
-            FROM Bookings b
-            JOIN Users u ON u.user_id = b.user_id
-            JOIN Vehicles v ON v.vehicle_id = b.vehicle_id;
+```sql
+    SELECT b.booking_id,
+        u.name AS customer_name,
+        v.name AS vehicle_name,
+        b.start_date,
+        b.end_date,
+        b.status
+    FROM Bookings b
+    JOIN Users u ON u.user_id = b.user_id
+    JOIN Vehicles v ON v.vehicle_id = b.vehicle_id;
 
-    Purpose:
-    To view all bookings with complete contextual details.
+#### Purpose: To view all bookings with complete contextual details.
 
 
 ### 🔹 Query 2: Vehicles Never Booked
+#### Finds vehicles that have never been rented.
 
-    Finds vehicles that have never been rented.
+```sql
+    SELECT v.vehicle_id,
+        v.name,
+        v.type,
+        v.model,
+        v.registration_number,
+        v.rental_price,
+        v.status
+    FROM Vehicles v
+    LEFT JOIN Bookings b ON v.vehicle_id = b.vehicle_id
+    WHERE b.vehicle_id IS NULL;
 
-    ```sql
-        SELECT v.vehicle_id,
-            v.name,
-            v.type,
-            v.model,
-            v.registration_number,
-            v.rental_price,
-            v.status
-        FROM Vehicles v
-        LEFT JOIN Bookings b ON v.vehicle_id = b.vehicle_id
-        WHERE b.vehicle_id IS NULL;
-
-    Purpose:
-    Useful for identifying unused inventory.
+#### Purpose: Useful for identifying unused inventory.
 
 
 ### 🔹 Query 3: Available Cars
 
-    Retrieves all cars that are currently available for rent.
+#### Retrieves all cars that are currently available for rent.
 
-    ```sql 
-        SELECT *
-        FROM Vehicles
-        WHERE type = 'car'
-        AND status = 'available';
+```sql 
+    SELECT *
+    FROM Vehicles
+    WHERE type = 'car'
+    AND status = 'available';
 
-    Purpose:
-    Helps customers or admins find ready-to-rent cars.
+#### Purpose: Helps customers or admins find ready-to-rent cars.
 
 
 ### 🔹 Query 4: Vehicles with More Than 2 Bookings
-    Identifies high-demand vehicles.
+####Identifies high-demand vehicles.
 
-    ```sql 
-        SELECT v.name AS vehicle_name,
-        COUNT(*) AS total_bookings
-        FROM Bookings b
-        JOIN Vehicles v ON b.vehicle_id = v.vehicle_id
-        GROUP BY b.vehicle_id, v.name
-        HAVING COUNT(*) > 2;
+```sql 
+    SELECT v.name AS vehicle_name,
+    COUNT(*) AS total_bookings
+    FROM Bookings b
+    JOIN Vehicles v ON b.vehicle_id = v.vehicle_id
+    GROUP BY b.vehicle_id, v.name
+    HAVING COUNT(*) > 2;
 
-    Purpose:
+#### Purpose:
     Analyzes booking frequency for business insights.

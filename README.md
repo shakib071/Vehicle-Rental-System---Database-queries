@@ -115,9 +115,11 @@ NOT EXISTS ensures only vehicles with no matching booking are returned.
 
 Example Output:
 
-vehicle_id	name	type	model	registration_number	rental_price	status
-3	Honda Civic	car	2022	XYZ-1234	50.00	available
-5	Suzuki Bike	bike	2021	BIKE-5678	20.00	available
+| vehicle_id | name        | type | model | registration_number | rental_price | status    |
+|------------|------------|------|-------|--------------------|--------------|-----------|
+| 3          | Honda Civic | car  | 2022  | XYZ-1234           | 50.00        | available |
+| 5          | Suzuki Bike | bike | 2021  | BIKE-5678          | 20.00        | available |
+
 
 Helps the rental business identify unused inventory.
 
